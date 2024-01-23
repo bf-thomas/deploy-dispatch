@@ -1,0 +1,25 @@
+name: infra-newrelic-deployment-marker
+on:
+  workflow_dispatch:
+    inputs:
+      app_name:
+        type: string
+      docker_image:
+        type: string
+      env:
+        type: choice
+        options:
+        - dev-01
+        - dev-02
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    name: New Relic deployment marker
+    steps:
+      #- uses: actions/checkout@v4
+      - name: print out deploy info
+        run: |
+          echo "Appname: ${{ github.event.inputs.app_name }}"
+          echo "Docker image: ${{ github.event.inputs.docker_image }}"
+          echo "Env: ${{ github.event.inputs.env }}"
